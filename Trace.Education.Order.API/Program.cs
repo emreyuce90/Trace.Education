@@ -25,10 +25,17 @@ namespace Trace.Education.Order.API {
                     resource.AddService(serviceName:openTelemetryConstants.ServiceName,serviceVersion:openTelemetryConstants.ServiceVersion);
                 });
 
-                configure.AddAspNetCoreInstrumentation();
+                configure.AddAspNetCoreInstrumentation(opt => {
+                    //benden içerisine context alan ve boolean dönen bir delege bekliyor
+                    opt.Filter = (context) => {
+                        if (!String.IsNullOrEmpty(context.Request.Path.Value)) {
+                            return context.Request.Path.Value.Contains("api", StringComparison.InvariantCulture);
+                        }
+                            return false;
+                    };
+                });
                 configure.AddConsoleExporter();
                 configure.AddOtlpExporter();
-
 
             });
 
@@ -51,7 +58,7 @@ namespace Trace.Education.Order.API {
                 "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
             };
 
-            app.MapGet("/weatherforecast", (HttpContext httpContext) => {
+            app.MapGet("api/weatherforecast", (HttpContext httpContext) => {
                 var forecast = Enumerable.Range(1, 5).Select(index =>
                     new WeatherForecast {
                         Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
