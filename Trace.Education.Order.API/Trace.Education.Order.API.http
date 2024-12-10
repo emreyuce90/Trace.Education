@@ -1,0 +1,6 @@
+@Trace.Education.Order.API_HostAddress = http://localhost:5114
+
+GET {{Trace.Education.Order.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
