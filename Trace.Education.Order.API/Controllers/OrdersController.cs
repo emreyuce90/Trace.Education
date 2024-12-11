@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Trace.Education.Order.API.Feature.Order;
+using Trace.Education.Order.API.Feature.Orders;
 
 namespace Trace.Education.Order.API.Controllers {
     [Route("api/[controller]")]

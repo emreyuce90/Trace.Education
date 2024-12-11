@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using Trace.Education.Order.API.OpenTelemetry;
 
-namespace Trace.Education.Order.API.Feature.Order {
+namespace Trace.Education.Order.API.Feature.Orders {
     public class OrderService : IOrderService {
 
         public Task CreateAsync(OrderCreateDto orderCreateDto) {

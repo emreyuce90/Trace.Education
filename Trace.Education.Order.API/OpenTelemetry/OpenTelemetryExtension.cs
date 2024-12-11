@@ -29,7 +29,13 @@ namespace Trace.Education.Order.API.OpenTelemetry {
                     };
                 });
                 configure.AddOtlpExporter();
-                
+                configure.AddEntityFrameworkCoreInstrumentation(efCoreOptions => {
+                    efCoreOptions.SetDbStatementForText = true;
+                    efCoreOptions.SetDbStatementForStoredProcedure = true;
+                    efCoreOptions.EnrichWithIDbCommand = (action, dbCommand) => {
+                        //
+                    };
+                });
             });
 
             ActivitySourceProvider.Source = new System.Diagnostics.ActivitySource(openTelemetrySettings.ActivitySourceName);

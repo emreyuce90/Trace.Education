@@ -1,6 +1,6 @@
-﻿using Trace.Education.Order.API.Feature.Order;
+﻿using Trace.Education.Order.API.Feature.Orders;
 
-namespace Trace.Education.Order.API.Repositories.Order
+namespace Trace.Education.Order.API.Feature.Order
 {
     public static class OrderExtension
     {

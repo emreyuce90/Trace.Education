@@ -1,8 +1,8 @@
 ﻿
-using OpenTelemetry.Resources;
-using OpenTelemetry.Trace;
+using Microsoft.EntityFrameworkCore;
+using Trace.Education.Order.API.Feature.Order;
 using Trace.Education.Order.API.OpenTelemetry;
-using Trace.Education.Order.API.Repositories.Order;
+using Trace.Education.Order.API.Repositories;
 using Trace.Education.Shared;
 
 namespace Trace.Education.Order.API;
@@ -17,6 +17,7 @@ public class Program {
         builder.Services.AddOpenTelemetryExt(builder.Configuration);
         builder.Services.AddOrdersExt();
         builder.Services.AddControllersWithViews();
+        builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(connectionString:builder.Configuration.GetConnectionString("SqlServer")));
 
         var app = builder.Build();
 

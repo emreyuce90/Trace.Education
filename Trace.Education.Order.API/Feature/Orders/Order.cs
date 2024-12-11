@@ -1,4 +1,4 @@
-﻿namespace Trace.Education.Order.API.Feature.Order {
+﻿namespace Trace.Education.Order.API.Feature.Orders {
     public class Order {
         public int Id { get; set; }
         public string OrderCode { get; set; } = default!;
@@ -18,5 +18,7 @@
         public int Count { get; set; }
         public decimal Price { get; set; }
         public int ProductId { get; set; }
+        public int OrderId { get; set; }
+        public Order Order { get; set; } = default!;
     }
 }
